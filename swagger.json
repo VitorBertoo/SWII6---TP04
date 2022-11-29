@@ -1,0 +1,516 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "WideWorldImporters API",
+    "version": "v1"
+  },
+  "paths": {
+    "/api/v1/Warehouse/StockItem": {
+      "get": {
+        "tags": [
+          "Warehouse"
+        ],
+        "summary": "Retrieves stock items",
+        "parameters": [
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "Page size",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 10
+            }
+          },
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "description": "Page number",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 1
+            }
+          },
+          {
+            "name": "lastEditedBy",
+            "in": "query",
+            "description": "Last edit by (user id)",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "colorID",
+            "in": "query",
+            "description": "Color id",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "outerPackageID",
+            "in": "query",
+            "description": "Outer package id",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "supplierID",
+            "in": "query",
+            "description": "Supplier id",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "unitPackageID",
+            "in": "query",
+            "description": "Unit package id",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the stock items list"
+          },
+          "500": {
+            "description": "If there was an internal server error"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Warehouse"
+        ],
+        "summary": "Creates a new stock item",
+        "requestBody": {
+          "description": "Request model",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PostStockItemsRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PostStockItemsRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/PostStockItemsRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Returns the stock items list"
+          },
+          "201": {
+            "description": "A response as creation of stock item"
+          },
+          "400": {
+            "description": "For bad request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "If there was an internal server error"
+          }
+        }
+      }
+    },
+    "/api/v1/Warehouse/StockItem/{id}": {
+      "get": {
+        "tags": [
+          "Warehouse"
+        ],
+        "summary": "Retrieves a stock item by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Stock item id",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the stock items list"
+          },
+          "404": {
+            "description": "If stock item is not exists",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "If there was an internal server error"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Warehouse"
+        ],
+        "summary": "Updates an existing stock item",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Stock item ID",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Request model",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PutStockItemsRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PutStockItemsRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/PutStockItemsRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "If stock item was updated successfully"
+          },
+          "400": {
+            "description": "For bad request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "If stock item is not exists",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "If there was an internal server error"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Warehouse"
+        ],
+        "summary": "Deletes an existing stock item",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Stock item ID",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "If stock item was deleted successfully"
+          },
+          "404": {
+            "description": "If stock item is not exists",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "If there was an internal server error"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "PostStockItemsRequest": {
+        "required": [
+          "isChillerStock",
+          "lastEditedBy",
+          "leadTimeDays",
+          "outerPackageID",
+          "quantityPerOuter",
+          "searchDetails",
+          "stockItemName",
+          "supplierID",
+          "taxRate",
+          "typicalWeightPerUnit",
+          "unitPackageID",
+          "unitPrice"
+        ],
+        "type": "object",
+        "properties": {
+          "stockItemID": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "stockItemName": {
+            "maxLength": 200,
+            "minLength": 0,
+            "type": "string"
+          },
+          "supplierID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "colorID": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "unitPackageID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "outerPackageID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "brand": {
+            "maxLength": 100,
+            "minLength": 0,
+            "type": "string",
+            "nullable": true
+          },
+          "size": {
+            "maxLength": 40,
+            "minLength": 0,
+            "type": "string",
+            "nullable": true
+          },
+          "leadTimeDays": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "quantityPerOuter": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "isChillerStock": {
+            "type": "boolean"
+          },
+          "barcode": {
+            "maxLength": 100,
+            "minLength": 0,
+            "type": "string",
+            "nullable": true
+          },
+          "taxRate": {
+            "type": "number",
+            "format": "double"
+          },
+          "unitPrice": {
+            "type": "number",
+            "format": "double"
+          },
+          "recommendedRetailPrice": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "typicalWeightPerUnit": {
+            "type": "number",
+            "format": "double"
+          },
+          "marketingComments": {
+            "type": "string",
+            "nullable": true
+          },
+          "internalComments": {
+            "type": "string",
+            "nullable": true
+          },
+          "customFields": {
+            "type": "string",
+            "nullable": true
+          },
+          "tags": {
+            "type": "string",
+            "nullable": true
+          },
+          "searchDetails": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "lastEditedBy": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "validFrom": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "validTo": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ProblemDetails": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "detail": {
+            "type": "string",
+            "nullable": true
+          },
+          "instance": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": {}
+      },
+      "PutStockItemsRequest": {
+        "required": [
+          "stockItemName",
+          "supplierID",
+          "unitPrice"
+        ],
+        "type": "object",
+        "properties": {
+          "stockItemName": {
+            "maxLength": 200,
+            "minLength": 0,
+            "type": "string"
+          },
+          "supplierID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "colorID": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "unitPrice": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}

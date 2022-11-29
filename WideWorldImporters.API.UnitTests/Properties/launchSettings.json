@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "WideWorldImporters.API.UnitTests": {
+      "commandName": "Project"
+    },
+    "Perfil 1": {
+      "commandName": "Project"
+    }
+  }
+}
